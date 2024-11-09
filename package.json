@@ -1,0 +1,45 @@
+{
+  "name": "node-typescript-starter",
+  "version": "1.1.1",
+  "description": "An starter template for NodeJS/TypeScript.",
+  "main": "dist/index.mjs",
+  "scripts": {
+    "build": "tsup",
+    "start": "npm run build && dotenv node dist/index.mjs",
+    "dev": "tsup --watch --onSuccess 'dotenv node dist/index.mjs'",
+    "prepare": "husky install",
+    "release:major": "dotenv release-it major",
+    "release:minor": "dotenv release-it minor",
+    "release:patch": "dotenv release-it patch",
+    "release:ci": "dotenv release-it --ci",
+    "lint": "eslint .",
+    "prettier": "prettier . --check"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/llapenna/node-typescript-starter.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/llapenna/node-typescript-starter/issues"
+  },
+  "homepage": "https://github.com/llapenna/node-typescript-starter#readme",
+  "devDependencies": {
+    "@commitlint/cli": "^17.7.2",
+    "@commitlint/config-conventional": "^17.7.0",
+    "@release-it/conventional-changelog": "7.0.0",
+    "@types/node": "^20.8.3",
+    "@typescript-eslint/eslint-plugin": "^6.7.4",
+    "@typescript-eslint/parser": "^6.7.4",
+    "dotenv-cli": "^7.3.0",
+    "eslint": "^8.51.0",
+    "eslint-config-prettier": "^9.0.0",
+    "husky": "^8.0.3",
+    "prettier": "^3.0.3",
+    "release-it": "^16.2.1",
+    "tsup": "^7.2.0",
+    "typescript": "^5.2.2"
+  }
+}
