@@ -19,3 +19,18 @@ function checkVariable(identifier: string) {
  * @description Node environment. Could be 'production' or 'development'.
  */
 export const NODE_ENV = checkVariable("NODE_ENV");
+
+/**
+ * @description Google API Client ID
+ */
+export const GOOGLE_CLIENT_ID = checkVariable("GOOGLE_CLIENT_ID");
+
+/**
+ * @description Google API Client Secret
+ */
+export const GOOGLE_CLIENT_SECRET = checkVariable("GOOGLE_CLIENT_SECRET");
+
+/**
+ * @description Google Sheet ID
+ */
+export const GOOGLE_SHEET_ID = checkVariable("GOOGLE_SHEET_ID");
