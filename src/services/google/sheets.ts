@@ -25,7 +25,8 @@ export const api = (client: OAuth2Client, sheetId: string) => {
           exchange.fromCurrency,
           exchange.toAmount,
           `=SI(D${nextRowNumber}="";"";D${nextRowNumber}/B${nextRowNumber})`,
-          `=SI(D${nextRowNumber}="";"";D${nextRowNumber}/B${nextRowNumber})`,
+          // F column is hidden and has no value
+          "",
           `=SI(D${nextRowNumber}="";"";$K$1-SUMAPRODUCTO($D$3:D${nextRowNumber};MES($A$3:A${nextRowNumber})=MES(A${nextRowNumber}))`,
         ];
         nextRowNumber++;
