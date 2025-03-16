@@ -29,7 +29,9 @@ export const api = (client: OAuth2Client) => {
         }),
       );
 
-      return messages.map((message) => message.data);
+      return messages
+        .map((message) => message.data)
+        .sort((a, b) => Number(a.internalDate) - Number(b.internalDate));
     },
     /**
      * Mark emails as read
