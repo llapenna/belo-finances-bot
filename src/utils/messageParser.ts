@@ -1,5 +1,6 @@
 import { ExchangeDetails } from "@/types/exchange";
 import { gmail_v1 } from "googleapis";
+
 export function parseConversionMessage(
   email: gmail_v1.Schema$Message,
 ): ExchangeDetails | null {

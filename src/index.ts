@@ -5,6 +5,7 @@ import { api as sheetsApi } from "@/services/google/sheets";
 import { GOOGLE_SHEET_ID } from "@/utils/config";
 import express from "express";
 import { parseConversionMessage } from "@/utils/messageParser";
+import { ExchangeDetails } from "@/types/exchange";
 
 const app = express();
 
@@ -29,15 +30,24 @@ app.get("/authenticated", async (req, res) => {
 app.get("/", async (_, res) => {
   const messages = await gmailApi(client).list();
 
-  const exchanges = messages.map((message) => parseConversionMessage(message));
+  const exchanges = messages
+    .map((message) => parseConversionMessage(message))
+    .filter((exchange) => exchange !== null);
 
-  for (const exchange of exchanges) {
-    if (!exchange) continue;
-    logger.info("Appending exchange:", exchange);
-    await sheetsApi(client, GOOGLE_SHEET_ID).appendExchange(exchange);
+  try {
+    await sheetsApi(client, GOOGLE_SHEET_ID).appendExchange(
+      exchanges as ExchangeDetails[],
+    );
+
+    const messageIds = messages
+      .map((msg) => msg.id)
+      .filter(Boolean) as string[];
+
+    await gmailApi(client).markAsRead(messageIds);
+    res.json(exchanges);
+  } catch (e) {
+    logger.error("Error appending exchanges:", e);
   }
-
-  res.json(exchanges);
 });
 
 app.get("/sheets", async (_, res) => {

@@ -31,6 +31,10 @@ export const api = (client: OAuth2Client) => {
 
       return messages.map((message) => message.data);
     },
+    /**
+     * Mark emails as read
+     * @param messageIds list of message ids
+     */
     markAsRead: async (messageIds: string[]) => {
       await gmail.users.messages.batchModify({
         userId: "me",
